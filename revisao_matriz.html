@@ -3,9 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Revisão Matriz</title>
 </head>
-<body>
+<style>
+    .container {
+        background-color: blue;
+        text-align: center;
+        width: 500px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
     
+    .item {
+        background-color: red;
+        width: 50px;
+        margin: 5px;
+    }
+</style>
+<body>
+    <div class="container" id="div_matriz">
+        <!-- <div class="item">X</div> -->
+    </div>
+    <button onclick="montar()">Montar matriz</button>
+    <br>
+    <input type="text" id="ipt_linha" placeholder="Linha">
+    <input type="text" id="ipt_coluna" placeholder="Coluna">
+    <button onclick="consultar()">Consultar</button>
+    <div id="resposta"></div>
+    <button onclick="somarLinha()">Soma linha</button>
+    <div id="respostaSomaLinha"></div>
+    <button onclick="somarColuna()">Soma coluna</button>
+    <div id="respostaSomaColuna"></div>
 </body>
+<script>
+    var matriz = [];
+    var qtdLinhas = 3;
+    var qtdColunas = 3;
+    var valorInicial = 5;
+    function montar() {
+        for (var linha = 0; linha < qtdLinhas; linha++){
+            matriz[linha] = [];
+            for (var coluna = 0; coluna < qtdColunas; coluna++){
+                matriz[linha][coluna] = valorInicial;
+                valorInicial += 5;
+                div_matriz.innerHTML += `
+                <div class="item">${matriz[linha][coluna]}</div>`;
+            }
+        }
+    }
+
+    function consultar() {
+        var linha = Number(ipt_linha.value);
+        var coluna = Number(ipt_coluna.value);
+
+        resposta.innerHTML = matriz[linha][coluna];
+    }
+</script>
 </html>
